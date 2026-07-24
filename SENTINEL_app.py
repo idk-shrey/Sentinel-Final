@@ -712,8 +712,10 @@ if sample is not None:
         with t2:
             st.markdown('**Full threat intelligence report**')
             rep = build_report(prob, verdict, r, sv)
+            import html
+            safe_rep = html.escape(rep).replace('\n', '<br>')
             st.markdown(
-                '<div class="report-box">{}</div>'.format(rep),
+                '<div class="report-box">{}</div>'.format(safe_rep),
                 unsafe_allow_html=True,
             )
             st.download_button(
